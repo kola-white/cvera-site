@@ -1,0 +1,30 @@
+---
+const claimTypes = [
+  "Professional employment roles and relationships",
+  "Academic qualifications and certifications",
+  "Licenses and regulatory status",
+  "Legal identity changes",
+  "Achievements and affiliations",
+];
+---
+
+<section class="border-t border-gray-200 pt-12 md:pt-14" aria-labelledby="claim-types-title">
+  <div class="mx-auto max-w-4xl text-center">
+    <h3
+      id="claim-types-title"
+      class='text-xl font-semibold tracking-tight text-gray-900 [font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe_UI",Roboto,"Helvetica_Neue",Arial,"Noto_Sans",sans-serif]'
+    >
+      Claim types
+    </h3>
+  </div>
+
+  <div class="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      claimTypes.map((item) => (
+        <div class="rounded-2xl border border-gray-200 bg-gray-50 px-5 py-5">
+          <p class="text-sm leading-6 font-medium text-gray-900">{item}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

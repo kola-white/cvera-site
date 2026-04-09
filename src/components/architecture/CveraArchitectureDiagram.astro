@@ -1,0 +1,731 @@
+---
+const fontStack =
+  'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif';
+---
+
+<figure
+  data-arch-diagram
+  class="architecture-diagram not-prose"
+  style={`font-family: ${fontStack};`}
+  aria-labelledby="cvera-architecture-diagram-title"
+>
+  <figcaption id="cvera-architecture-diagram-title" class="sr-only">
+    Cvera system architecture showing the Expo iOS client, ingress and TLS layer,
+    Kratos identity provider, EVT domain API, and associated Postgres data stores.
+  </figcaption>
+
+  <!-- Desktop -->
+  <div class="hidden lg:block">
+    <svg
+      viewBox="0 0 2000 960"
+      class="h-auto w-full"
+      role="img"
+      aria-label="Desktop system architecture diagram for Cvera"
+    >
+      <defs>
+        <marker
+          id="arch-arrow-desktop"
+          markerWidth="10"
+          markerHeight="10"
+          refX="8"
+          refY="5"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563"></path>
+        </marker>
+      </defs>
+
+      <!-- GROUPS -->
+      <g data-arch-group="client">
+        <rect x="44" y="252" width="280" height="228" rx="26" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="96" y="218" width="128" height="32" rx="16" class="group-chip"></rect>
+          <text x="160" y="239" text-anchor="middle" class="group-chip-text">
+            Expo iOS Client
+          </text>
+        </g>
+      </g>
+
+      <g data-arch-group="edge">
+        <rect x="392" y="170" width="334" height="360" rx="26" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="500" y="136" width="122" height="32" rx="16" class="group-chip"></rect>
+          <text x="561" y="157" text-anchor="middle" class="group-chip-text">
+            Ingress / TLS
+          </text>
+        </g>
+      </g>
+
+      <g data-arch-group="kratos">
+        <rect x="780" y="78" width="516" height="654" rx="28" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="882" y="42" width="212" height="32" rx="16" class="group-chip"></rect>
+          <text x="988" y="63" text-anchor="middle" class="group-chip-text">
+            Identity Provider (Kratos)
+          </text>
+        </g>
+      </g>
+
+      <g data-arch-group="api">
+        <rect x="1392" y="214" width="520" height="454" rx="26" class="group-box"></rect>
+        <g data-arch-label>
+            <rect x="1590" y="178" width="130" height="32" rx="16" class="group-chip"></rect>
+            <text x="1656" y="199" text-anchor="middle" class="group-chip-text">
+            EVT Domain API
+            </text>
+        </g>
+      </g>
+
+      <!-- CLIENT -->
+      <g data-arch-node="A" class="node">
+        <rect x="118" y="340" width="158" height="104" rx="22" class="node-card"></rect>
+        <text x="197" y="378" text-anchor="middle" class="node-title">Expo App</text>
+        <text x="197" y="408" text-anchor="middle" class="node-copy">React Native / SDK 54</text>
+      </g>
+
+      <!-- INGRESS -->
+      <g data-arch-node="NAuth" class="node">
+        <rect x="494" y="258" width="158" height="104" rx="22" class="node-card node-accent"></rect>
+        <text x="573" y="296" text-anchor="middle" class="node-title">Nginx</text>
+        <text x="573" y="326" text-anchor="middle" class="node-copy">auth.cvera.app</text>
+      </g>
+
+      <g data-arch-node="NApi" class="node">
+        <rect x="494" y="406" width="158" height="104" rx="22" class="node-card node-accent"></rect>
+        <text x="573" y="444" text-anchor="middle" class="node-title">Nginx</text>
+        <text x="573" y="474" text-anchor="middle" class="node-copy">api.cvera.app</text>
+      </g>
+
+      <!-- KRATOS -->
+      <g data-arch-node="KPub" class="node">
+        <rect x="900" y="236" width="206" height="104" rx="22" class="node-card"></rect>
+        <text x="1003" y="274" text-anchor="middle" class="node-title">Kratos Public</text>
+        <text x="1003" y="304" text-anchor="middle" class="node-copy">serve public :4434</text>
+      </g>
+
+      <g data-arch-node="KAdm" class="node">
+        <rect x="900" y="506" width="206" height="104" rx="22" class="node-card"></rect>
+        <text x="1003" y="544" text-anchor="middle" class="node-title">Kratos Admin</text>
+        <text x="1003" y="574" text-anchor="middle" class="node-copy">serve admin :4435</text>
+      </g>
+
+      <g data-arch-node="PK" class="node">
+        <text x="1184" y="222" text-anchor="middle" class="db-chip-text">Postgres DB 'evt_kratos'</text>
+        <ellipse cx="1184" cy="348" rx="66" ry="22" class="db-top"></ellipse>
+        <rect x="1118" y="348" width="132" height="136" class="db-body"></rect>
+        <ellipse cx="1184" cy="484" rx="66" ry="22" class="db-bottom"></ellipse>
+        <text x="1184" y="402" text-anchor="middle" class="db-copy db-copy-inside">
+          identities, credentials,
+        </text>
+        <text x="1184" y="430" text-anchor="middle" class="db-copy db-copy-inside">
+          Kratos sessions
+        </text>
+      </g>
+
+      <!-- EVT DOMAIN API -->
+      <g data-arch-node="API" class="node">
+        <rect x="1460" y="404" width="196" height="116" rx="22" class="node-card"></rect>
+        <text x="1558" y="446" text-anchor="middle" class="node-title">EVT Go API</text>
+        <text x="1558" y="478" text-anchor="middle" class="node-copy">api.cvera.app</text>
+      </g>
+
+      <g data-arch-node="SQL-layer" class="node">
+        <rect x="1668" y="232" width="148" height="84" rx="18" class="node-card"></rect>
+        <text x="1742" y="252" text-anchor="middle" class="node-title">SQL</text>
+        <text x="1742" y="272" text-anchor="middle" class="node-copy">domain data,</text>
+        <text x="1742" y="290" text-anchor="middle" class="node-copy">
+            refresh token hashes
+        </text>
+      </g>
+
+      <g data-arch-node="HTTP-layer" class="node">
+        <rect x="1668" y="546" width="148" height="104" rx="18" class="node-card"></rect>
+        <text x="1742" y="580" text-anchor="middle" class="node-title">HTTP :4435</text>
+        <text x="1742" y="606" text-anchor="middle" class="node-copy">Kratos admin API</text>
+        <text x="1742" y="632" text-anchor="middle" class="node-copy">
+            session / identity lookup
+        </text>
+      </g>
+
+      <g data-arch-node="PE" class="node">
+        <text x="1850" y="368" text-anchor="middle" class="db-chip-text">Postgres DB 'evt'</text>
+        <ellipse cx="1850" cy="394" rx="50" ry="18" class="db-top"></ellipse>
+        <rect x="1800" y="394" width="100" height="124" class="db-body"></rect>
+        <ellipse cx="1850" cy="518" rx="50" ry="18" class="db-bottom"></ellipse>
+        <text x="1850" y="448" text-anchor="middle" class="db-copy db-copy-inside">
+            domain users, cases,
+        </text>
+        <text x="1850" y="464" text-anchor="middle" class="db-copy db-copy-inside">
+            refresh_tokens SHA-256
+        </text>
+      </g>
+
+      <!-- EDGES -->
+      <g data-arch-edges>
+        <!-- Expo -> NAuth -->
+        <path
+          data-arch-edge
+          d="M 276 372 C 348 340, 410 294, 494 310"
+          class="edge-line"
+          marker-end="url(#arch-arrow-desktop)"
+        ></path>
+        <g data-arch-label>
+          <text x="296" y="274" class="edge-label-title">HTTPS</text>
+          <text x="296" y="298" class="edge-label-copy">email/password,</text>
+          <text x="296" y="322" class="edge-label-copy">self-service login flows</text>
+        </g>
+
+        <!-- NAuth -> KPub -->
+        <path
+          data-arch-edge
+          d="M 652 310 C 732 306, 810 300, 900 288"
+          class="edge-line"
+          marker-end="url(#arch-arrow-desktop)"
+        ></path>
+        <g data-arch-label>
+          <text x="760" y="286" class="edge-label-inline">HTTP :4434</text>
+        </g>
+
+        <!-- KPub -> PK -->
+        <path
+          data-arch-edge
+          d="M 1106 288 C 1138 292, 1156 308, 1168 328"
+          class="edge-line"
+          marker-end="url(#arch-arrow-desktop)"
+        ></path>
+        <g data-arch-label>
+          <text x="1096" y="285" class="edge-label-inline">identities / sessions</text>
+        </g>
+
+        <!-- Expo -> NApi -->
+        <path
+          data-arch-edge
+          d="M 276 410 C 350 440, 412 458, 494 458"
+          class="edge-line"
+          marker-end="url(#arch-arrow-desktop)"
+        ></path>
+        <g data-arch-label>
+          <text x="296" y="458" class="edge-label-title">HTTPS</text>
+          <text x="296" y="482" class="edge-label-copy">access_token (JWT),</text>
+          <text x="296" y="506" class="edge-label-copy">refresh_token (opaque hex)</text>
+        </g>
+
+        <!-- NApi -> API -->
+        <path
+            data-arch-edge
+            d="M 652 458
+                C 980 454, 1240 452, 1420 460
+                C 1440 462, 1450 462, 1460 462"
+            class="edge-line"
+            marker-end="url(#arch-arrow-desktop)"
+            >
+        </path>
+        <g data-arch-label>
+          <text x="1044" y="450" class="edge-label-inline">HTTP :8080</text>
+        </g>
+
+        <!-- API -> SQL block -->
+        <path
+  data-arch-edge
+  d="M 1656 434
+     C 1684 408, 1710 370, 1742 316"
+  class="edge-line"
+  marker-end="url(#arch-arrow-desktop)"
+></path>
+
+        <!-- SQL block -> EVT DB -->
+        <path
+            data-arch-edge
+            d="M 1816 274
+                C 1848 286, 1864 330, 1850 376"
+            class="edge-line"
+            marker-end="url(#arch-arrow-desktop)"
+            >
+        </path>
+
+        <!-- API -> HTTP 4435 block -->
+        <path
+            data-arch-edge
+            d="M 1656 490
+                C 1784 514, 1798 530, 1742 546"
+            class="edge-line"
+            marker-end="url(#arch-arrow-desktop)"
+            >
+        </path>
+
+        <!-- HTTP 4435 block -> Kratos Admin -->
+        <path
+            data-arch-edge
+            d="M 1106 558
+                C 1136 552, 1160 528, 1178 500"
+            class="edge-line"
+            marker-end="url(#arch-arrow-desktop)"
+            >
+        </path>
+
+        <!-- KAdm -> PK -->
+        <path
+            data-arch-edge
+            d="M 1668 598
+                C 1608 570, 1490 564, 1350 560
+                C 1240 558, 1160 556, 1106 558"
+            class="edge-line"
+            marker-end="url(#arch-arrow-desktop)"
+            >
+        </path>
+        <g data-arch-label>
+          <text x="1140" y="526" class="edge-label-title">SQL</text>
+          <text x="1140" y="544" class="edge-label-copy">identity state</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Mobile -->
+  <div class="lg:hidden">
+    <svg
+      viewBox="0 0 860 1520"
+      class="h-auto w-full"
+      role="img"
+      aria-label="Mobile system architecture diagram for Cvera"
+    >
+      <defs>
+        <marker
+          id="arch-arrow-mobile"
+          markerWidth="10"
+          markerHeight="10"
+          refX="8"
+          refY="5"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4B5563"></path>
+        </marker>
+      </defs>
+
+      <!-- GROUPS -->
+      <g data-arch-group="client-mobile">
+        <rect x="48" y="92" width="764" height="150" rx="24" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="86" y="58" width="128" height="32" rx="16" class="group-chip"></rect>
+          <text x="150" y="79" text-anchor="middle" class="group-chip-text">
+            Expo iOS Client
+          </text>
+        </g>
+      </g>
+
+      <g data-arch-group="edge-mobile">
+        <rect x="48" y="312" width="764" height="236" rx="24" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="98" y="278" width="122" height="32" rx="16" class="group-chip"></rect>
+          <text x="159" y="299" text-anchor="middle" class="group-chip-text">
+            Ingress / TLS
+          </text>
+        </g>
+      </g>
+
+      <g data-arch-group="kratos-mobile">
+        <rect x="48" y="630" width="764" height="452" rx="24" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="92" y="596" width="212" height="32" rx="16" class="group-chip"></rect>
+          <text x="198" y="617" text-anchor="middle" class="group-chip-text">
+            Identity Provider (Kratos)
+          </text>
+        </g>
+      </g>
+
+      <g data-arch-group="api-mobile">
+        <rect x="48" y="1148" width="764" height="324" rx="24" class="group-box"></rect>
+        <g data-arch-label>
+          <rect x="100" y="1114" width="130" height="32" rx="16" class="group-chip"></rect>
+          <text x="165" y="1135" text-anchor="middle" class="group-chip-text">
+            EVT Domain API
+          </text>
+        </g>
+      </g>
+
+      <!-- CLIENT -->
+      <g data-arch-node="A-mobile" class="node">
+        <rect x="288" y="126" width="284" height="84" rx="20" class="node-card"></rect>
+        <text x="430" y="160" text-anchor="middle" class="node-title">Expo App</text>
+        <text x="430" y="188" text-anchor="middle" class="node-copy">React Native / SDK 54</text>
+      </g>
+
+      <!-- INGRESS -->
+      <g data-arch-node="NAuth-mobile" class="node">
+        <rect x="114" y="372" width="240" height="88" rx="20" class="node-card node-accent"></rect>
+        <text x="234" y="406" text-anchor="middle" class="node-title">Nginx</text>
+        <text x="234" y="434" text-anchor="middle" class="node-copy">auth.cvera.app</text>
+      </g>
+
+      <g data-arch-node="NApi-mobile" class="node">
+        <rect x="494" y="372" width="240" height="88" rx="20" class="node-card node-accent"></rect>
+        <text x="614" y="406" text-anchor="middle" class="node-title">Nginx</text>
+        <text x="614" y="434" text-anchor="middle" class="node-copy">api.cvera.app</text>
+      </g>
+
+      <!-- KRATOS -->
+      <g data-arch-node="KPub-mobile" class="node">
+        <rect x="88" y="726" width="248" height="96" rx="20" class="node-card"></rect>
+        <text x="212" y="762" text-anchor="middle" class="node-title">Kratos Public</text>
+        <text x="212" y="792" text-anchor="middle" class="node-copy">serve public :4434</text>
+      </g>
+
+      <g data-arch-node="KAdm-mobile" class="node">
+        <rect x="88" y="904" width="248" height="96" rx="20" class="node-card"></rect>
+        <text x="212" y="940" text-anchor="middle" class="node-title">Kratos Admin</text>
+        <text x="212" y="970" text-anchor="middle" class="node-copy">serve admin :4435</text>
+      </g>
+
+      <g data-arch-node="PK-mobile" class="node">
+        <text x="606" y="698" text-anchor="middle" class="db-chip-text">Postgres DB 'evt_kratos'</text>
+        <ellipse cx="606" cy="824" rx="68" ry="22" class="db-top"></ellipse>
+        <rect x="538" y="824" width="136" height="142" class="db-body"></rect>
+        <ellipse cx="606" cy="966" rx="68" ry="22" class="db-bottom"></ellipse>
+        <text x="606" y="882" text-anchor="middle" class="db-copy db-copy-inside">
+          identities, credentials,
+        </text>
+        <text x="606" y="910" text-anchor="middle" class="db-copy db-copy-inside">
+          Kratos sessions
+        </text>
+      </g>
+
+      <!-- EVT -->
+      <g data-arch-node="API-mobile" class="node">
+        <rect x="92" y="1240" width="248" height="100" rx="20" class="node-card"></rect>
+        <text x="216" y="1278" text-anchor="middle" class="node-title">EVT Go API</text>
+        <text x="216" y="1308" text-anchor="middle" class="node-copy">api.cvera.app</text>
+      </g>
+
+      <g data-arch-node="SQL-layer-mobile" class="node">
+        <rect x="474" y="1186" width="274" height="84" rx="18" class="node-card"></rect>
+        <text x="611" y="1216" text-anchor="middle" class="node-title">SQL</text>
+        <text x="611" y="1240" text-anchor="middle" class="node-copy">domain data,</text>
+        <text x="611" y="1262" text-anchor="middle" class="node-copy">
+          refresh token hashes
+        </text>
+      </g>
+
+      <g data-arch-node="HTTP-layer-mobile" class="node">
+        <rect x="474" y="1312" width="274" height="96" rx="18" class="node-card"></rect>
+        <text x="611" y="1344" text-anchor="middle" class="node-title">HTTP :4435</text>
+        <text x="611" y="1368" text-anchor="middle" class="node-copy">Kratos admin API</text>
+        <text x="611" y="1392" text-anchor="middle" class="node-copy">
+          session / identity lookup
+        </text>
+      </g>
+
+      <!-- EDGES -->
+      <g data-arch-edges>
+        <!-- Expo -> NAuth -->
+        <path
+          data-arch-edge
+          d="M 430 210 C 360 262, 300 312, 234 372"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+        <g data-arch-label>
+          <text x="86" y="204" class="edge-label-title">HTTPS</text>
+          <text x="86" y="228" class="edge-label-copy">email/password,</text>
+          <text x="86" y="252" class="edge-label-copy">self-service login flows</text>
+        </g>
+
+        <!-- Expo -> NApi -->
+        <path
+          data-arch-edge
+          d="M 430 210 C 500 262, 558 312, 614 372"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+        <g data-arch-label>
+          <text x="492" y="204" class="edge-label-title">HTTPS</text>
+          <text x="492" y="228" class="edge-label-copy">access_token (JWT),</text>
+          <text x="492" y="252" class="edge-label-copy">refresh_token (opaque hex)</text>
+        </g>
+
+        <!-- NAuth -> KPub -->
+        <path
+          data-arch-edge
+          d="M 234 460 C 226 552, 220 636, 212 726"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+        <g data-arch-label>
+          <text x="108" y="606" class="edge-label-inline">HTTP :4434</text>
+        </g>
+
+        <!-- KPub -> PK -->
+        <path
+          data-arch-edge
+          d="M 336 774 C 424 774, 494 780, 538 804"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+        <g data-arch-label>
+          <text x="366" y="738" class="edge-label-inline">identities / sessions</text>
+        </g>
+
+        <!-- NApi -> API -->
+        <path
+          data-arch-edge
+          d="M 614 460 C 566 616, 470 926, 216 1240"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+        <g data-arch-label>
+          <text x="500" y="836" class="edge-label-inline">HTTP :8080</text>
+        </g>
+
+        <!-- API -> SQL block -->
+        <path
+          data-arch-edge
+          d="M 340 1270 C 390 1240, 432 1226, 474 1228"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+
+        <!-- API -> HTTP block -->
+        <path
+          data-arch-edge
+          d="M 340 1310 C 390 1330, 432 1350, 474 1360"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+
+        <!-- HTTP block -> Kratos Admin -->
+        <path
+          data-arch-edge
+          d="M 474 1360 C 340 1360, 232 1268, 216 1000"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+
+        <!-- KAdm -> PK -->
+        <path
+          data-arch-edge
+          d="M 336 952 C 428 952, 500 944, 548 908"
+          class="edge-line"
+          marker-end="url(#arch-arrow-mobile)"
+        ></path>
+        <g data-arch-label>
+          <text x="374" y="1034" class="edge-label-title">SQL</text>
+          <text x="374" y="1058" class="edge-label-copy">identity state</text>
+        </g>
+      </g>
+    </svg>
+  </div>
+</figure>
+
+<script type="module">
+  import gsap from "gsap";
+
+  const root = document.querySelector("[data-arch-diagram]");
+  if (!root) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const groups = root.querySelectorAll("[data-arch-group]");
+  const nodes = root.querySelectorAll("[data-arch-node]");
+  const labels = root.querySelectorAll("[data-arch-label]");
+  const edges = root.querySelectorAll("[data-arch-edge]");
+
+  if (prefersReducedMotion) {
+    gsap.set([...groups, ...nodes, ...labels, ...edges], {
+      opacity: 1,
+      clearProps: "all",
+    });
+  } else {
+    edges.forEach((edge) => {
+      const length = edge.getTotalLength();
+      edge.style.strokeDasharray = `${length}`;
+      edge.style.strokeDashoffset = `${length}`;
+    });
+
+    gsap.set(groups, { opacity: 0, y: 8 });
+    gsap.set(nodes, { opacity: 0, y: 10 });
+    gsap.set(labels, { opacity: 0, y: 4 });
+
+    const animateDiagram = () => {
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+      tl.to(groups, {
+        opacity: 1,
+        y: 0,
+        duration: 0.42,
+        stagger: 0.08,
+      })
+        .to(
+          nodes,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.38,
+            stagger: 0.05,
+          },
+          "-=0.18",
+        )
+        .to(
+          edges,
+          {
+            strokeDashoffset: 0,
+            duration: 0.54,
+            stagger: 0.05,
+          },
+          "-=0.14",
+        )
+        .to(
+          labels,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.26,
+            stagger: 0.025,
+          },
+          "-=0.26",
+        );
+    };
+
+    let hasPlayed = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !hasPlayed) {
+            hasPlayed = true;
+            animateDiagram();
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.28 },
+    );
+
+    observer.observe(root);
+  }
+</script>
+
+<style>
+  .architecture-diagram :global(svg) {
+    display: block;
+  }
+
+  .group-box {
+    fill: #ffffff;
+    stroke: #e5e7eb;
+    stroke-width: 1.5;
+  }
+
+  .group-chip {
+    fill: #f5f3ff;
+    stroke: #ddd6fe;
+    stroke-width: 1;
+  }
+
+  .group-chip-text {
+    fill: #4b5563;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .node-card {
+    fill: #ffffff;
+    stroke: #d1d5db;
+    stroke-width: 1.25;
+  }
+
+  .node-accent {
+    fill: #fcfcfd;
+    stroke: #c4b5fd;
+  }
+
+  .node-title {
+    fill: #111827;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .node-copy {
+    fill: #4b5563;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .db-top,
+  .db-bottom,
+  .db-body {
+    fill: #ffffff;
+    stroke: #9ca3af;
+    stroke-width: 1.1;
+  }
+
+  .db-chip-text {
+    fill: #6b7280;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .db-copy {
+    fill: #4b5563;
+    font-size: 10.5px;
+    font-weight: 500;
+  }
+
+  .db-copy-inside {
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .edge-line {
+    fill: none;
+    stroke: #4b5563;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .edge-label-title {
+    fill: #111827;
+    font-size: 11px;
+    font-weight: 600;
+    text-anchor: start;
+  }
+
+  .edge-label-copy {
+    fill: #4b5563;
+    font-size: 10px;
+    font-weight: 500;
+    text-anchor: start;
+  }
+
+  .edge-label-inline {
+    fill: #6b7280;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-anchor: start;
+  }
+
+  @media (hover: hover) {
+    .architecture-diagram [data-arch-node] .node-card,
+    .architecture-diagram [data-arch-node] .db-top,
+    .architecture-diagram [data-arch-node] .db-body,
+    .architecture-diagram [data-arch-node] .db-bottom {
+      transition:
+        stroke 160ms ease,
+        fill 160ms ease,
+        transform 160ms ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .architecture-diagram [data-arch-node]:hover .node-card,
+    .architecture-diagram [data-arch-node]:hover .db-top,
+    .architecture-diagram [data-arch-node]:hover .db-body,
+    .architecture-diagram [data-arch-node]:hover .db-bottom {
+      stroke: #6d28d9;
+      fill: #fcfcff;
+    }
+  }
+</style>
