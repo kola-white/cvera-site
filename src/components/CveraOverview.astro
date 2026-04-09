@@ -1,0 +1,148 @@
+---
+import IndependentVerificationCards from "@components/IndependentVerificationCards.astro";
+import ClaimTypesCards from "@components/ClaimTypesCards.astro";
+import CveraArchitectureDiagram from "@components/architecture/CveraArchitectureDiagram.astro";
+---
+
+<section
+  aria-labelledby="cvera-overview-title"
+  class='bg-white py-20 md:py-28 [font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe_UI",Roboto,"Helvetica_Neue",Arial,"Noto_Sans",sans-serif]'
+>
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mx-auto max-w-3xl">
+      <header class="space-y-6">
+        <p class="text-sm leading-6 font-semibold tracking-[0.14em] text-gray-500 uppercase">
+          Overview
+        </p>
+
+        <div class="space-y-4">
+          <h2
+            id="cvera-overview-title"
+            class="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl"
+          >
+            Verifiable human claims for independent trust systems
+          </h2>
+
+          <p class="text-base leading-7 text-gray-600">
+            Cvera is a prototype system for user-held, cryptographically verifiable claims that
+            enables trusted issuers to create signed records about individuals, which can be
+            independently verified without relying on direct access to the issuing authority.
+          </p>
+
+          <p class="text-base leading-7 text-gray-600">
+            Cvera defines a generalized framework for portable, verifiable human claims across
+            domains.
+          </p>
+        </div>
+      </header>
+
+      <div class="mt-14 space-y-14 md:mt-16 md:space-y-16">
+        <section aria-labelledby="demo-shows-title" class="space-y-6">
+          <div class="space-y-3">
+            <h3
+              id="demo-shows-title"
+              class="text-xl font-semibold tracking-tight text-gray-900"
+            >
+              What this demo shows
+            </h3>
+          </div>
+
+          <ul class="space-y-4 text-base leading-7 text-gray-600">
+            <li class="text-gray-600">Issuance of a verifiable claim token</li>
+            <li class="text-gray-600">User-held credential (portable JSON)</li>
+            <li class="text-gray-600">
+              <div>
+                <p class="text-base leading-7 text-gray-600">Independent verification</p>
+                <IndependentVerificationCards />
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <ClaimTypesCards />
+
+        <section aria-labelledby="why-this-matters-title" class="border-t border-gray-200 pt-12 md:pt-14">
+          <div class="space-y-4">
+            <h3
+              id="why-this-matters-title"
+              class="text-xl font-semibold tracking-tight text-gray-900"
+            >
+              Why this matters
+            </h3>
+
+            <p class="text-base leading-7 text-gray-600">
+              AI is accelerating the creation of synthetic and unverifiable information. Trust in
+              claims about individuals is eroding. Verification still depends on manual checks
+              across fragmented systems.
+            </p>
+
+            <p class="text-base leading-7 text-gray-600">
+              Cvera introduces a model where claims are portable, verifiable, independent, and
+              auditable.
+            </p>
+
+            <p class="text-base leading-7 text-gray-600">
+              This shifts systems from trusting claims to verifying proof.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="vision-title" class="border-t border-gray-200 pt-12 md:pt-14">
+          <div class="space-y-4">
+            <h3
+              id="vision-title"
+              class="text-xl font-semibold tracking-tight text-gray-900"
+            >
+              Vision
+            </h3>
+
+            <p class="text-base leading-7 text-gray-600">
+              A world where individuals hold their own verifiable records, and institutions rely on
+              independent verification rather than intermediaries.
+            </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="architecture-title" class="border-t border-gray-200 pt-12 md:pt-14">
+            <div class="space-y-6">
+                <div class="space-y-3">
+                <p class="text-sm leading-6 font-semibold tracking-[0.14em] text-gray-500 uppercase">
+                    Architecture
+                </p>
+
+                <h3
+                    id="architecture-title"
+                    class="text-xl font-semibold tracking-tight text-gray-900"
+                >
+                    System architecture
+                </h3>
+
+                <p class="text-base leading-7 text-gray-600">
+                    High-level system architecture illustrating identity, authentication, and backend
+                    API flows supporting claim issuance and verification.
+                </p>
+                </div>
+
+                <div >
+                <CveraArchitectureDiagram />
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="next-steps-title" class="border-t border-gray-200 pt-12 md:pt-14">
+          <div class="space-y-4">
+            <h3
+              id="next-steps-title"
+              class="text-xl font-semibold tracking-tight text-gray-900"
+            >
+              Next steps
+            </h3>
+
+            <p class="text-base leading-7 text-gray-600">
+              Explore the prototype, provide feedback.
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

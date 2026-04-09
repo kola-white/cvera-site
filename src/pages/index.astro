@@ -1,6 +1,7 @@
 ---
 import Hero from "@components/Hero.astro"
 import "../styles/global.css";
+import CveraOverview from "@components/CveraOverview.astro";
 ---
 
 <html lang="en">
@@ -13,6 +14,31 @@ import "../styles/global.css";
 		<title>Cvera</title>
 	</head>
 	<body>
-		<Hero />
+		<main>
+			<Hero />
+			<CveraOverview />
+		</main>
+		<footer class="border-t border-gray-200 py-12">
+			<div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-600">
+				
+				<!-- Left -->
+				<div class="text-center md:text-left">
+				<p class="font-medium text-gray-900">Cvera</p>
+				<p>Claims. Verified.</p>
+				</div>
+
+				<!-- Right -->
+				<div class="text-center md:text-right space-y-1">
+				<p>© {new Date().getFullYear()} NorStar Systems LLC</p>
+				<p>California, United States</p>
+				<p>
+					<a href="mailto:nick@cvera.app" class="text-primary hover:underline">
+					nick@cvera.app
+					</a>
+				</p>
+				</div>
+
+			</div>
+		</footer>
 	</body>
 </html>
