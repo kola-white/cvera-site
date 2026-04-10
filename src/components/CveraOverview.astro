@@ -1,5 +1,5 @@
 ---
-import IndependentVerificationCards from "@components/IndependentVerificationCards.astro";
+import DemoShowCards from "@components/DemoShowCards.astro";
 import ClaimTypesCards from "@components/ClaimTypesCards.astro";
 import CveraArchitectureDiagram from "@components/architecture/CveraArchitectureDiagram.astro";
 ---
@@ -38,25 +38,20 @@ import CveraArchitectureDiagram from "@components/architecture/CveraArchitecture
 
       <div class="mt-14 space-y-14 md:mt-16 md:space-y-16">
         <section aria-labelledby="demo-shows-title" class="space-y-6">
-          <div class="space-y-3">
-            <h3
-              id="demo-shows-title"
-              class="text-xl font-semibold tracking-tight text-gray-900"
-            >
-              What this demo shows
-            </h3>
-          </div>
+            <div class="space-y-3">
+                <h3
+                id="demo-shows-title"
+                class="text-xl font-semibold tracking-tight text-gray-900"
+                >
+                What this demo shows
+                </h3>
 
-          <ul class="space-y-4 text-base leading-7 text-gray-600">
-            <li class="text-gray-600">Issuance of a verifiable claim token</li>
-            <li class="text-gray-600">User-held credential (portable JSON)</li>
-            <li class="text-gray-600">
-              <div>
-                <p class="text-base leading-7 text-gray-600">Independent verification</p>
-                <IndependentVerificationCards />
-              </div>
-            </li>
-          </ul>
+                <p class="text-base leading-7 text-gray-600">
+                A concise view of what IIW attendees can expect to see in the prototype.
+                </p>
+            </div>
+
+            <DemoShowCards />
         </section>
 
         <ClaimTypesCards />
@@ -123,7 +118,7 @@ import CveraArchitectureDiagram from "@components/architecture/CveraArchitecture
                 </p>
                 </div>
 
-                <div >
+                <div class="relative left-1/2 w-[min(100rem,calc(100vw-3rem))] -translate-x-1/2">
                 <CveraArchitectureDiagram />
                 </div>
             </div>
