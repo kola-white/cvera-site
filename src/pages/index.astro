@@ -2,6 +2,7 @@
 import Hero from "@components/Hero.astro"
 import "../styles/global.css";
 import CveraOverview from "@components/CveraOverview.astro";
+import CveraVideo from "@components/CveraVideo.astro";
 ---
 
 <html lang="en">
@@ -16,6 +17,11 @@ import CveraOverview from "@components/CveraOverview.astro";
 	<body>
 		<main>
 			<Hero />
+			<section class="py-16 md:py-24">
+				<div class="max-w-6xl mx-auto px-6">
+					<CveraVideo />
+				</div>
+			</section>
 			<CveraOverview />
 		</main>
 		<footer class="border-t border-gray-200 py-12">
